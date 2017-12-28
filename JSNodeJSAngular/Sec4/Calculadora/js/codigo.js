@@ -1,7 +1,6 @@
 //objeto con las propiedades de la calculadora
 var p = {
-  teclas: document.querySelectorAll("#calculadora ul li")
-
+  teclas: document.querySelectorAll("#calculadora ul li");
 }
 
 //objeto con las métodos de la calculadora
@@ -13,7 +12,27 @@ var m = {
   },
 
   oprimirTecla: function(tecla) {
-    console.log(tecla.target);
+    p.accion = tecla.target.getAttribute("class");
+    m.calculadora(p.accion);
+  },
+
+  calculadora: function(accion){
+    switch (accion) {
+      case "numero":
+        console.log("numero");
+        break;
+      case "signo":
+        console.log("signo");
+        break;
+      case "decimal":
+        console.log("decimal");
+        break;
+      case "igual":
+        console.log("igual");
+        break;
+      default:
+
+    }
   }
 }
 
