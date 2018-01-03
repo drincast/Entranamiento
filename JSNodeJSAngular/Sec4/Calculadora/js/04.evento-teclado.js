@@ -38,82 +38,83 @@ var m = {
       p.digito = 0;
     }
 
-    else if(tecla.keyCode === 49 || tecla.keyCode === 97){
+    if(tecla.keyCode === 49 || tecla.keyCode === 97){
       p.accion = "numero";
       p.digito = 1;
     }
 
-    else if(tecla.keyCode === 50 || tecla.keyCode === 98){
+    if(tecla.keyCode === 50 || tecla.keyCode === 98){
       p.accion = "numero";
       p.digito = 2;
     }
 
-    else if(tecla.keyCode === 51 || tecla.keyCode === 99){
+    if(tecla.keyCode === 51 || tecla.keyCode === 99){
       p.accion = "numero";
       p.digito = 3;
     }
 
-    else if(tecla.keyCode === 52 || tecla.keyCode === 100){
+    if(tecla.keyCode === 52 || tecla.keyCode === 100){
       p.accion = "numero";
       p.digito = 4;
     }
 
-    else if(tecla.keyCode === 53 || tecla.keyCode === 101){
+    if(tecla.keyCode === 53 || tecla.keyCode === 101){
       p.accion = "numero";
       p.digito = 5;
     }
 
-    else if(tecla.keyCode === 54 || tecla.keyCode === 102){
+    if(tecla.keyCode === 54 || tecla.keyCode === 102){
       p.accion = "numero";
       p.digito = 6;
     }
 
-    else if(tecla.keyCode === 55 || tecla.keyCode === 103){
+    if(tecla.keyCode === 55 || tecla.keyCode === 103){
       p.accion = "numero";
       p.digito = 7;
     }
 
-    else if(tecla.keyCode === 56 || tecla.keyCode === 104){
+    if(tecla.keyCode === 56 || tecla.keyCode === 104){
       p.accion = "numero";
       p.digito = 8;
     }
 
-    else if(tecla.keyCode === 57 || tecla.keyCode === 105){
+    if(tecla.keyCode === 57 || tecla.keyCode === 105){
       p.accion = "numero";
       p.digito = 9;
     }
 
-    else if(tecla.keyCode === 187 || tecla.keyCode === 107){
+    if(tecla.keyCode === 187 || tecla.keyCode === 107){
       p.accion = "signo";
       p.digito = '+';
     }
 
-    else if(tecla.keyCode === 189 || tecla.keyCode === 109){
+    if(tecla.keyCode === 189 || tecla.keyCode === 109){
       p.accion = "signo";
       p.digito = '-';
     }
 
-    else if(tecla.keyCode === 88 || tecla.keyCode === 106){
+    if(tecla.keyCode === 88 || tecla.keyCode === 106){
       p.accion = "signo";
       p.digito = '*';
     }
 
-    else if(tecla.keyCode === 111){
+    if(tecla.keyCode === 111){
       p.accion = "signo";
       p.digito = '/';
     }
 
-    else if(tecla.keyCode === 190 || tecla.keyCode === 110){
-      p.accion = "decimal";
+    if(tecla.keyCode === 190 || tecla.keyCode === 110){
+      p.accion = "signo";
       p.digito = '.';
     }
 
-    else if(tecla.keyCode === 13){
+    if(tecla.keyCode === 13){
       p.accion = "igual";
     }
 
-    else if(tecla.keyCode === 27 || tecla.keyCode === 46){
+    if(tecla.keyCode === 27 || tecla.keyCode === 46){
       m.borrarCalculadora();
+      p.digito = 0;
     }
 
     m.calculadora(p.accion, p.digito);
@@ -155,7 +156,7 @@ var m = {
         }
         break;
       case "decimal":
-        if(p.cantidadDecimales === false && p.cantidadSignos !== 1){
+        if(p.cantidadDecimales === false){
           p.operaciones.innerHTML += digito;
           p.cantidadDecimales = true;
           p.resultado = false;
@@ -163,15 +164,7 @@ var m = {
 
         break;
       case "igual":
-        var expresion = /./g;
         p.operaciones.innerHTML = eval(p.operaciones.innerHTML);
-
-        console.log("respuesta decimal", expresion.test(p.operaciones.innerHTML));
-
-        if(expresion.test(p.operaciones.innerHTML)){
-          p.cantidadDecimales = true;
-        }
-
         p.resultado = true;
         break;
       default:
