@@ -7,8 +7,6 @@ var p = {
   imgSlide: document.querySelectorAll('#slide ul li'),
   avanzar: document.querySelector('#slide #avanzar'),
   retroceder: document.querySelector('#slide #retroceder'),
-  velocidadSlide: 3000,
-  formatearLoop: false
 }
 
 
@@ -17,15 +15,10 @@ var m = {
   inicioSlide: function(){
     for(var i = 0; i < p.paginacion.length; i++){
       p.paginacion[i].addEventListener("click", m.paginacionSlide);
-      p.imgSlide[i].style.width = (100/p.paginacion.length) + '%';
     }
 
     p.avanzar.addEventListener("click", m.avanzar);
     p.retroceder.addEventListener("click", m.retroceder);
-
-    m.intervalo();
-
-    p.cajaSlide.style.width = (p.paginacion.length*100) + "%";
   },
 
   paginacionSlide: function(item){
@@ -42,6 +35,7 @@ var m = {
       p.item++;
     }
 
+    console.log('item', p.item);
     m.movimientoSlide(p.item);
   },
 
@@ -53,11 +47,11 @@ var m = {
       p.item--;
     }
 
+    console.log('item', p.item);
     m.movimientoSlide(p.item);
   },
 
   movimientoSlide: function(item){
-    p.formatearLoop = true;
     p.cajaSlide.style.left = -(item * 100) + "%";
 
     for(var i = 0; i < p.paginacion.length; i++){
@@ -82,18 +76,8 @@ var m = {
 
     }
 
-    console.log('item', p.item);
-  },
 
-  intervalo: function(){
-    setInterval(function(){
-      if(p.formatearLoop){
-        p.formatearLoop = false;
-      }
-      else{
-        m.avanzar();
-      }
-    }, p.velocidadSlide)
+    console.log('item', (item * 100));
   }
 }
 
