@@ -81,8 +81,6 @@ var m = {
       }, 500);
 
     }
-
-    console.log('item', p.item);
   },
 
   intervalo: function(){
