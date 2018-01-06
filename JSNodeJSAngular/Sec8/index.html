@@ -10,11 +10,11 @@
   </head>
   <body>
     <section id="fotoFondo">
-      
+
     </section>
     <div class="content-fluid">
       <!-- CABEZOTE -->
-      <header class="row">
+      <header id="cabezote" class="row">
         <figure id="logotipo" class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
           <img src="img/logotipo.png" alt="logo">
         </figure>
@@ -25,18 +25,23 @@
 
         <nav class="col-lg-6 col-md-7 col-sm-8 col-xs-12">
           <ul>
-            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Boton 1</a></li>
-            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Boton 2</a></li>
-            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Boton 3</a></li>
-            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Boton 4</a></li>
-            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Boton 5</a></li>
-            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Boton 6</a></li>
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#inicio">Inicio</a></li>
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#inicioGaleria">Galeria</a></li>
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#inicioMouse">Mouse</a></li>
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#inicioScroll">Scroll</a></li>
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Formulario</a></li>
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#">Angular</a></li>
           </ul>
 
         </nav>
       </header>
 
       <!-- SLIDESHOW -->
+      <h2 id="inicio" class="row titulos">
+        <hr />
+        SLIDESHOW
+        <hr />
+      </h2>
       <div id="slide" class="row">
         <ul>
           <li>
@@ -102,6 +107,11 @@
       </div>
 
       <!-- GALERIA DE IMAGENES -->
+      <h2 id="inicioGaleria" class="row titulos">
+        <hr />
+        GALERIA DE IMAGENES
+        <hr />
+      </h2>
       <div id="galeria" class="row">
         <ul>
           <li class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
@@ -144,6 +154,11 @@
       </div>
 
       <!-- EFECTO DE MOUSE -->
+      <h2 id="inicioMouse" class="row titulos">
+        <hr />
+        MOVIMIENTOS CON EL SCROLL
+        <hr />
+      </h2>
       <div id="efectoMouse" class="row">
         <figure></figure>
         <figure></figure>
@@ -153,6 +168,11 @@
       </div>
 
       <!-- GALERIA DE SCROLL -->
+      <h2 id="inicioScroll" class="row titulos">
+        <hr />
+        EFECTOS CON EL SCROLL
+        <hr />
+      </h2>
       <div id="scroll">
         <!-- articulo 1 -->
         <article class="row">
@@ -235,5 +255,6 @@
     <script type="text/javascript" src="js/slide.min.js"></script>
     <script type="text/javascript" src="js/galeria.min.js"></script>
     <script type="text/javascript" src="js/mouse.js"></script>
+    <script type="text/javascript" src="js/scroll.js"></script>
   </body>
 </html>
