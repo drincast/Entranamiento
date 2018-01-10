@@ -12,6 +12,20 @@ import { AppComponent } from './app.component';
 
 import { IndexComponente } from './componentes/index';
 
+import { SlideComponente } from './componentes/slide';
+
+import { GaleriaComponente } from './componentes/galeria';
+
+import { MouseComponente } from './componentes/mouse';
+
+import { ScrollComponente } from './componentes/scroll';
+
+import { FormularioComponente } from './componentes/formulario';
+
+import { ApiComponente } from './componentes/api';
+
+import { routing, appRoutingProviders } from './app.rutas';
+
 //los decoradores funciones que modifican clases de javascript, angular cuenta con muchos decoradores
 //que adjuntan metadatos de las clases para que sepa lo que significan esas clases y como deben funcionar.
 @NgModule({
@@ -20,14 +34,24 @@ import { IndexComponente } from './componentes/index';
   //donde se declaran los componentes de la aplicación
   declarations: [
     AppComponent,
-    IndexComponente
+    IndexComponente,
+    SlideComponente,
+    GaleriaComponente,
+    MouseComponente,
+    ScrollComponente,
+    FormularioComponente,
+    ApiComponente
   ],
   //donde se importan otros modulos que son necesarios para el componente declarados en los modulos.
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing
   ],
   //creadores de servicios, queda en la colección global de servicios.
-  providers: [],
+  providers: [
+    //carga del servicio qye nameja las rutas
+    appRoutingProviders
+  ],
   //??, el componente raíz, que crea angular y lo inserta en index.html
   bootstrap: [AppComponent]
 })
