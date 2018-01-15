@@ -42,6 +42,7 @@ import { routing, appRoutingProviders } from './app.rutas';
     FormularioComponente,
     ApiComponente
   ],
+  //exports: [], coj de declaraciones que deben ser accesibles para templates de otros modulos
   //donde se importan otros modulos que son necesarios para el componente declarados en los modulos.
   imports: [
     BrowserModule,
@@ -49,7 +50,7 @@ import { routing, appRoutingProviders } from './app.rutas';
   ],
   //creadores de servicios, queda en la colección global de servicios.
   providers: [
-    //carga del servicio qye nameja las rutas
+    //carga del servicio que nameja las rutas
     appRoutingProviders
   ],
   //??, el componente raíz, que crea angular y lo inserta en index.html
