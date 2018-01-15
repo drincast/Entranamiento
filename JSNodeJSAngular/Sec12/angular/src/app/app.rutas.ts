@@ -16,4 +16,5 @@ const appRoutes: Routes = [
 ];
 
 export const appRoutingProviders: any[] = [];
+//las rutas posibles de la aplicación
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
