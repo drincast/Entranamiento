@@ -7,6 +7,9 @@ Cada aplicación angular tiene al menos una clase NgModule, el módulo raíz se 
 import { BrowserModule } from '@angular/platform-browser';
 //NgModule para usar el modulo raíz
 import { NgModule } from '@angular/core';
+//HTTPModule para trabajar con cabeceras http
+import { HttpModule } from '@angular/http'
+
 //AppComponent es el componente donde estara el componente principal de la aplicación
 import { AppComponent } from './app.component';
 
@@ -46,7 +49,8 @@ import { routing, appRoutingProviders } from './app.rutas';
   //donde se importan otros modulos que son necesarios para el componente declarados en los modulos.
   imports: [
     BrowserModule,
-    routing
+    routing,
+    HttpModule
   ],
   //creadores de servicios, queda en la colección global de servicios.
   providers: [
