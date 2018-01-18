@@ -38,6 +38,13 @@ export class ServicioSlide{
     //como parametro debemos pasar la url, capturamos la respuesta en el metodo map()
     //en callback con una función flecha recogemos la respuesta que viene en el primer parámetro
     //y lo convertimos en formato json
+
+    // let resp;
+    // setTimeout("resp = this.ejecutar();", 5000);
+    return this._http.get(this.url).map(resultado => resultado.json());
+  }
+
+  ejecutar(){
     return this._http.get(this.url).map(resultado => resultado.json());
   }
 }

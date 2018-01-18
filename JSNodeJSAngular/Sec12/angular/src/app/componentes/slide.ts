@@ -29,6 +29,7 @@ export class SlideComponente{
         this.slideJson = resultado;
         console.log("this.slideJson: ", this.slideJson);
         console.log("this.slideJson: ", this.slideJson[0]["imagen"]);
+        //console.log("this.slideJson: ", this.slideJson[0].indexOf());
       },
 
       error => {
