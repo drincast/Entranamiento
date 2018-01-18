@@ -11,15 +11,33 @@ import { Http, Response, Headers } from '@angular/http'
 //para mapear las respuestas http
 import 'rxjs/add/operator/map';
 
-//para permitir utilizar rxjs que es la respuesta del mapeo y poder utilizarla
+//para permitir utilizar rxjs que es la respuesta del mapeo y poder utilizarla, mape de respuestas
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 
 export class ServicioSlide{
-  public ruta_foto = "assets/img/slide/slide01.jpg"
+  // public ruta_foto = "assets/img/slide/slide01.jpg"
+  // prueba(){
+  //   return this.ruta_foto;
+  // }
 
-  prueba(){
-    return this.ruta_foto;
+  public url:string;
+
+  //peticiones http para traer el archivo json
+  //para utilizar el servicio HTTP debemos tener una propiedad HTTP en nuestra clase
+  constructor(private _http:Http){
+
+    //instalar el componente Allow-Control-Allo-Origin: *
+    this.url = "http://tutorialesatualcance.com/slide.json";
+  }
+
+  tomarJsonSlide(){
+    //Hacer peticion get a la url, haciendo la llamada al objeto http que ya esta cargado en la
+    //propiedad privada.
+    //como parametro debemos pasar la url, capturamos la respuesta en el metodo map()
+    //en callback con una función flecha recogemos la respuesta que viene en el primer parámetro
+    //y lo convertimos en formato json
+    return this._http.get(this.url).map(resultado => resultado.json());
   }
 }

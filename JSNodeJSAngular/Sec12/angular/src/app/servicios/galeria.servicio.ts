@@ -17,9 +17,18 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 
 export class ServicioGaleria{
-  public ruta_foto = "assets/img/galeria/01.jpg"
+  public ruta_foto = "assets/img/galeria/01.jpg";
+  public url:string;
+
+  constructor(private _http:Http){
+    this.url = "http://tutorialesatualcance.com/galeria.json";
+  }
 
   prueba(){
     return this.ruta_foto;
+  }
+
+  tomarJsonGaleria(){
+    return this._http.get(this.url).map(resultado => resultado.json());
   }
 }

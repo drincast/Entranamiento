@@ -13,8 +13,27 @@ import { ServicioSlide } from '../servicios/slide.servicio';
 })
 
 export class SlideComponente{
+  public slideJson;
+
   constructor(private _ServicioSlide:ServicioSlide){
     //prueba del servicios
-    console.log(this._ServicioSlide.prueba());
+    //console.log(this._ServicioSlide.prueba());
+
+
+
+    //peticiones http para traer el archivo json
+    //debemos utilizar el método subscribe() para capturar la respuesta del servicio y poder
+    //imprimir el OBSERVABLE que es el resultado del mapeo.
+    this._ServicioSlide.tomarJsonSlide().subscribe(
+      resultado => {
+        this.slideJson = resultado;
+        console.log("this.slideJson: ", this.slideJson);
+        console.log("this.slideJson: ", this.slideJson[0]["imagen"]);
+      },
+
+      error => {
+        var mensajeError = <any>error;
+      }
+    );
   }
 }
