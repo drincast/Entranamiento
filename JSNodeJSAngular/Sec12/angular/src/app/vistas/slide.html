@@ -10,7 +10,7 @@
   SLIDESHOW
   <hr />
 </h2>
-<div id="slide" class="row" *ngIf="slideJson">
+<div id="slide" class="row" *ngIf="!slideJson">
   <ul>
     <li *ngFor="let slide of slideJson">
       <img src="{{slide.imagen}}" alt="">
@@ -31,7 +31,7 @@
   </ul>
 
   <ol id="paginacion">
-    <li data-item="1"><span class="fa fa-circle"></span></li>
+    <li *ngFor="let slide of slideJson; let i = index" value="{{i+1}}" data-item=""><span class="fa fa-circle"></span></li>
     <!-- <li data-item="1"><span class="fa fa-circle"></span></li>
     <li data-item="2"><span class="fa fa-circle"></span></li>
     <li data-item="3"><span class="fa fa-circle"></span></li>
