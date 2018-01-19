@@ -10,7 +10,7 @@
   SLIDESHOW
   <hr />
 </h2>
-<div id="slide" class="row" *ngIf="!slideJson">
+<div id="slide" class="row" *ngIf="slideJson">
   <ul>
     <li *ngFor="let slide of slideJson">
       <img src="{{slide.imagen}}" alt="">
