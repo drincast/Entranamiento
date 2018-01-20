@@ -130,9 +130,10 @@ export class ScrollComponente {
 
       intervalVEHTML: function() {
         //funcion de intervalo para verificar las propiedades que se cargan con elementos HTML
+        
         ps.intervaloVerificar = setInterval(()=> {
           if(ms.iniciarPropEHTML()){
-            clearInterval(pg.intervaloVerificar);
+            clearInterval(ps.intervaloVerificar);
             ms.inicioScroll();
           }
         }, 2);
@@ -140,6 +141,7 @@ export class ScrollComponente {
     };
 
     //ms.inicioScroll();
+    ms.intervalVEHTML();
     // setTimeout(()=>{
     // }, 1);
   }
