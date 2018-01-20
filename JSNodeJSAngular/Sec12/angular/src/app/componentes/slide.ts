@@ -28,8 +28,8 @@ export class SlideComponente{
     this._ServicioSlide.tomarJsonSlide().subscribe(
       resultado => {
         this.slideJson = resultado;
-        console.log("this.slideJson: ", this.slideJson);
-        console.log("this.slideJson: ", this.slideJson[0]["imagen"]);
+        //console.log("this.slideJson: ", this.slideJson);
+        //console.log("this.slideJson: ", this.slideJson[0]["imagen"]);
         //console.log("this.slideJson: ", this.slideJson[0].indexOf());
       },
 
@@ -53,7 +53,7 @@ export class SlideComponente{
       retroceder: document.querySelector('#slide #retroceder'),
       velocidadSlide: 3000,
       formatearLoop: false,
-      intervaloVerificar: 0
+      intervaloVerificar: undefined
     }
 
 
@@ -138,57 +138,57 @@ export class SlideComponente{
             m.avanzar();
           }
         }, p.velocidadSlide)
-      }
+      },
 
-      //inicializa las propiedades que se cargan con elementos HTML
       iniciarPropEHTML: function() {
+        //inicializa las propiedades que se cargan con elementos HTML
         let resp = false;
 
-        console.log(document.querySelectorAll("#paginacion li")[0]);
+        //console.log(document.querySelectorAll("#paginacion li")[0]);
         if(document.querySelectorAll("#paginacion li")[0] !== undefined){
           p.paginacion= document.querySelectorAll("#paginacion li");
-          console.log(document.querySelectorAll("#paginacion li"));
+          //console.log(document.querySelectorAll("#paginacion li"));
 
           if(document.querySelectorAll("#slide ul")[0] !== undefined){
             p.cajaSlide= document.querySelectorAll("#slide ul");
-            console.log(document.querySelectorAll("#slide ul");
+            //console.log(document.querySelectorAll("#slide ul"));
           }
           else{ return resp;}
 
           if(document.querySelectorAll('#slide ul li')[0] !== undefined){
             p.imgSlide= document.querySelectorAll('#slide ul li');
-            console.log(document.querySelectorAll('#slide ul li'));
+            //console.log(document.querySelectorAll('#slide ul li'));
           }
           else{ return resp;}
 
           if(document.querySelector('#slide #avanzar') !== undefined){
             p.avanzar = document.querySelector('#slide #avanzar');
-            console.log(document.querySelectorAll('#slide #avanzar'));
+            //console.log(document.querySelectorAll('#slide #avanzar'));
           }
           else{ return resp;}
 
           if(document.querySelector('#slide #retroceder') !== undefined){
             p.retroceder = document.querySelector('#slide #retroceder');
-            console.log(document.querySelectorAll('#slide #retroceder')
+            //console.log(document.querySelectorAll('#slide #retroceder'));
           }
           else{ return resp;}
 
           return true;
         }
 
-        console.log(resp);
+        //console.log(resp);
         return resp;
       },
 
-      //funcion de intervalo para verificar las propiedades que se cargan con elementos HTML
       intervalVEHTML: function() {
-          p.intervaloVerificar = setInterval(()=> {
-            console.log(p.intervaloVerificar);
-            if(m.iniciarPropEHTML()){
-              clearInterval(p.intervaloVerificar);
-              m.inicioSlide();
-            }
-          }, 2);
+        //funcion de intervalo para verificar las propiedades que se cargan con elementos HTML
+        p.intervaloVerificar = setInterval(()=> {
+          //console.log(p.intervaloVerificar);
+          if(m.iniciarPropEHTML()){
+            clearInterval(p.intervaloVerificar);
+            m.inicioSlide();
+          }
+        }, 2);
       }
     };
 
