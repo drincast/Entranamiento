@@ -50,6 +50,6 @@ export class MouseComponente{
       };
 
       mm.inicioMouse();
-    }, 90);
+    }, 1);
   }
 }

@@ -103,6 +103,6 @@ export class ScrollComponente {
       };
 
       ms.inicioScroll();
-    }, 100);
+    }, 1);
   }
 }

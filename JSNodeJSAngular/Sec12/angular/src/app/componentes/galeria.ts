@@ -145,6 +145,6 @@ export class GaleriaComponente{
 
       mg.inicioGaleria();
 
-    }, 80);
+    }, 1);
   }
 }
