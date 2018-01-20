@@ -204,3 +204,9 @@ export class SlideComponente{
   //   console.log("hola");
   // }
 }
+
+/*
+  Corrección, se crea el método intervalVEHTML(), que emplea un setInterval que llamara al método iniciarPropEHTML() para que asigne a las propiedades de la clase que se inicializan con elementos HTML, su elemento correspondiente, el setInterval se usa para que este llamando a iniciarPropEHTML(), hasta que todas las propiedades queden inicializadas, cuando se cumpla se finaliza el setInterval.
+
+  Funciona, pero en si la apllicación esta consumiento muchos recursos (CPU y se incrementa la memoria)
+*/
