@@ -12,7 +12,7 @@ export class ScrollComponente {
       posicionScroll: 0,
       articulos: document.querySelectorAll('#scroll article'),
       cajaScroll: document.querySelectorAll('#scroll'),
-      cabezote: document.querySelector("header"),
+      cabezote: document.querySelectorAll("header"),
       botonera: document.querySelectorAll("nav ul li a"),
       ruta: null,
       intervalo: null,
@@ -34,8 +34,8 @@ export class ScrollComponente {
       efectoParallax: function(){
         ps.posicionScroll = window.pageYOffset;
         if(ps.posicionScroll > 100){
-          ps.cabezote.style.position = "fixed";
-          ps.cabezote.style.zIndex = "10";
+          ps.cabezote["0"].style.position = "fixed";
+          ps.cabezote["0"].style.zIndex = "10";
 
           if(window.matchMedia("(min.width:768px)").matches){
             ps.padding = 80;
@@ -43,12 +43,10 @@ export class ScrollComponente {
           else{
             ps.padding = 140;
           }
-
-
         }
         else{
-          ps.cabezote.style.position = "relative";
-          ps.cabezote.style.zIndex = "0";
+          ps.cabezote["0"].style.position = "relative";
+          ps.cabezote["0"].style.zIndex = "0";
 
           if(window.matchMedia("(min.width:768px)").matches){
             ps.padding = 180;
@@ -74,7 +72,7 @@ export class ScrollComponente {
       },
 
       desplazamiento: function(ruta) {
-        ruta.preventDefault();
+        ruta.preventDefault();  //cancela la accion del evento
         ps.ruta = ruta.target.getAttribute('href');
         ps.destinoScroll = document.querySelector(ps.ruta).offsetTop - ps.padding;
 
@@ -112,8 +110,8 @@ export class ScrollComponente {
           }
           else{ return resp;}
 
-          if(document.querySelector("header")[0] !== undefined){
-            ps.cabezote = document.querySelector("header");
+          if(document.querySelectorAll("header")[0] !== undefined){
+            ps.cabezote = document.querySelectorAll("header");
           }
           else{ return resp;}
 
@@ -130,7 +128,7 @@ export class ScrollComponente {
 
       intervalVEHTML: function() {
         //funcion de intervalo para verificar las propiedades que se cargan con elementos HTML
-        
+
         ps.intervaloVerificar = setInterval(()=> {
           if(ms.iniciarPropEHTML()){
             clearInterval(ps.intervaloVerificar);
