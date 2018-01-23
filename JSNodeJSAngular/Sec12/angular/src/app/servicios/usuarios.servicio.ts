@@ -13,7 +13,7 @@ export class ServicioUsuarios{
   public url:string;
 
   constructor(private _http:Http){
-    this.url = "http://tutorialesatualcance.com/usuarios.json";
+    this.url = "https://tutorialesatualcance.com/usuarios.json";
   }
 
   prueba(){
@@ -22,7 +22,7 @@ export class ServicioUsuarios{
 
   login(){
     //cuando se envian peticiones POST, se debe declarar el contenido que se va a envíar, en la cabecera Http
-    let cabecera = new Headers({"Content-Type":"application/x-www-form-urlencoded"});
+    let cabecera = new Headers({"Content-Type":"application/json"});
     return this._http.post(this.url, {cabecera: cabecera}).map(resultado => resultado.json());
   }
 }

@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api rest para el curso de udemy aprende a programar con javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "drincastX",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

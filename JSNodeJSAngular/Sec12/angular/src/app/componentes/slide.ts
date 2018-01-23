@@ -15,7 +15,7 @@ import { ServicioSlide } from '../servicios/slide.servicio';
 
 export class SlideComponente{
   public slideJson;
-  public identificado:string = "ok";
+  public identificado:string;
 
   constructor(private _ServicioSlide:ServicioSlide){
     //prueba del servicios
@@ -38,6 +38,8 @@ export class SlideComponente{
   ngOnInit(){
     //this.saludo();
     //objeto con propiedades de slide
+
+    this.identificado = localStorage.getItem("id");
 
     var p = {
       paginacion: document.querySelectorAll("#paginacion li"),
