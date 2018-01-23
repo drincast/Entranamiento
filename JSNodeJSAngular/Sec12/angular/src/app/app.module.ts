@@ -9,6 +9,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //HTTPModule para trabajar con cabeceras http
 import { HttpModule } from '@angular/http'
+//modulo para trabajar con formularios
+import { FormsModule } from '@angular/forms';
 
 //AppComponent es el componente donde estara el componente principal de la aplicación
 import { AppComponent } from './app.component';
@@ -50,7 +52,8 @@ import { routing, appRoutingProviders } from './app.rutas';
   imports: [
     BrowserModule,
     routing,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   //creadores de servicios, queda en la colección global de servicios.
   providers: [

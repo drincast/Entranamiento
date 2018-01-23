@@ -334,6 +334,111 @@ EFECTO DE SCROLL
 	background: url(../img/radio.jpg);
 }
 
+/* API */
+#login{
+	position:fixed;
+	width:100%;
+	height:100%;
+	background:linear-gradient(blue,black);
+}
+
+#login form{
+	position:absolute;
+	width:300px;
+	height:auto;
+	background:white;
+	top:50%;
+	left:50%;
+	margin-left:-150px;
+	margin-top:-150px;
+	border-radius:10px;
+	box-shadow:0px 0px 10px black;
+}
+
+#login form h1{
+	background: black;
+	padding:20px;
+	text-align: center;
+	color:silver;
+	border-radius:5px 5px 0px 0px;
+}
+
+#login form hr{
+	border:5px solid silver;
+}
+
+#login form input{
+	display: block;
+	padding:10px 20px;
+	width:90%;
+	margin:5%;
+}
+
+.btn-frontend{
+	position:absolute;
+	top:20px;
+	left:20px;
+	margin:10px;
+	padding:10px;
+	background: blue;
+	color:white;
+	border-radius:5px;
+	border:2px solid white;
+	cursor:pointer;
+}
+
+#backend #cabezote{
+	width:100%;
+	text-align: center;
+	padding:20px;
+}
+
+#backend #cabezote button{
+	margin:5px;
+	padding:10px 20px;
+	cursor:pointer;
+	background:black;
+	color:white;
+	border:0;
+}
+
+#backend .gestores{
+	text-align: center;
+	padding:20px;
+}
+
+#backend .gestores h1{
+	color:#666;
+	font-weight: 100;
+}
+
+#backend .gestores input{
+	display:block;
+	margin:10px auto;
+	padding:5px;
+}
+
+#backend .gestores textarea{
+	display:block;
+	margin:auto;
+	padding:12px;
+}
+
+#gestorSlide{
+	position:absolute;
+	width:70px;
+	background:rgba(0,0,0,.5);
+	right:0px;
+	top:0px;
+}
+
+#gestorSlide i{
+	color:white;
+	margin:5px;
+	font-size: 24px;
+	cursor: pointer;
+}
+
 /*=============================================
 PANTALLA DE ESCRITORIO GRANDE - LARGE (lg) - revisamos en portatil o pc
 =============================================*/

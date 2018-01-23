@@ -18,6 +18,11 @@
         <h1>{{slide.titulo}}</h1>
         <h3>{{slide.descripcion}}</h3>
       </div>
+
+      <div id="gestorSlide" *ngIf="identificado" >
+        <i class="fa fa-pencil" aria-hidden="ture"></i>
+        <i class="fa fa-trash" aria-hidden="ture"></i>
+      </div>
     </li>
 
     <!-- <li>

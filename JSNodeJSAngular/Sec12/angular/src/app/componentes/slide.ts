@@ -15,6 +15,7 @@ import { ServicioSlide } from '../servicios/slide.servicio';
 
 export class SlideComponente{
   public slideJson;
+  public identificado:string = "ok";
 
   constructor(private _ServicioSlide:ServicioSlide){
     //prueba del servicios

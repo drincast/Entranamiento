@@ -9,6 +9,7 @@ import { ServicioGaleria } from '../servicios/galeria.servicio';
 
 export class GaleriaComponente{
   public galeriaJson;
+  public identificado:string = "ok";
 
   constructor(private _ServicioGaleria:ServicioGaleria){
     //prueba del servicios

@@ -1,1 +1,44 @@
-<h1>BIENVENIDOS A LA API</h1>
+<!-- login -->
+
+<section id="login" *ngIf="!identificado" >
+  <form #fromIngreso="ngForm" (ngSubmit)="onSubmit()">
+    <h1>Login</h1>
+    <hr />
+    <input id="txtUsuario" type="text" placeholder="Usuario" name="usuario" #usuario="ngModel" [(ngModel)]="listaUsuarios.usuario" required>
+    <input id="txtPassword" type="text" placeholder="contraseña" name="password" #password="ngModel" [(ngModel)]="listaUsuarios.password" required>
+    <input id="btnLogin" type="submit" name="" value="Enviar">
+  </form>
+  <a [routerLink]="['/index']"> <button type="button" name="button" class="btn-frontend">Regresar</button></a>
+</section>
+
+<!-- backend -->
+
+<section id="backend" *ngIf="identificado">
+  <a [routerLink]="['/index']"> <button type="button" name="button" class="btn-frontend">Regresar</button></a>
+  <div id="cabezote">
+    <h3>Hola Usuario</h3>
+    <button type="button" name="button">Cerrar Sesión</button>
+  </div>
+  <hr />
+  <!-- SLIDESHOW -->
+  <div class="gestores">
+    <h1>Gestor slide</h1>
+    <form>
+      <input type="text" placeholder="agregar titulo" required>
+      <textarea name="name" rows="8" cols="80" maxlength="55" placeholder="descripcion ..." required></textarea>
+      <input type="file" required>
+      <input type="submit" name="" value="Enviar" />
+    </form>
+  </div>
+  <tag-slide></tag-slide>
+
+  <!-- GALERIA DE IMAGENES -->
+  <div class="gestores">
+    <h1>Gestor galeria</h1>
+    <form>
+      <input type="file" required>
+      <input type="submit" name="" value="Enviar" />
+    </form>
+  </div>
+  <tag-galeria></tag-galeria>
+</section>
