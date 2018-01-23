@@ -4,9 +4,13 @@
   <form #fromIngreso="ngForm" (ngSubmit)="onSubmit()">
     <h1>Login</h1>
     <hr />
-    <input id="txtUsuario" type="text" placeholder="Usuario" name="usuario" #usuario="ngModel" [(ngModel)]="listaUsuarios.usuario" required>
-    <input id="txtPassword" type="text" placeholder="contraseña" name="password" #password="ngModel" [(ngModel)]="listaUsuarios.password" required>
+    <input id="txtUsuario" type="text" placeholder="Usuario" name="usuario" #txtUsuario="ngModel" [(ngModel)]="listaUsuarios.usuario" required>
+    <input id="txtPassword" type="text" placeholder="contraseña" name="password" #txtPassword="ngModel" [(ngModel)]="listaUsuarios.password" required>
     <input id="btnLogin" type="submit" name="" value="Enviar">
+
+    <div *ngIf="validarIngreso" style="text-align:center;">
+      !Datoa incorrectos¡
+    </div>
   </form>
   <a [routerLink]="['/index']"> <button type="button" name="button" class="btn-frontend">Regresar</button></a>
 </section>

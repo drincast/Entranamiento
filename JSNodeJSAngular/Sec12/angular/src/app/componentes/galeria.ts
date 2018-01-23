@@ -18,8 +18,8 @@ export class GaleriaComponente{
     this._ServicioGaleria.tomarJsonGaleria().subscribe(
       resultado => {
         this.galeriaJson = resultado;
-        console.log("this.galeriaJson: ", this.galeriaJson);
-        console.log("this.galeriaJson: ", this.galeriaJson[0]["foto"]);
+        // console.log("this.galeriaJson: ", this.galeriaJson);
+        // console.log("this.galeriaJson: ", this.galeriaJson[0]["foto"]);
       },
 
       error => {
