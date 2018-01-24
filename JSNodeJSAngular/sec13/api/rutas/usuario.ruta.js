@@ -12,5 +12,8 @@ var api = express.Router();
 //solicitados por el cliente
 api.get("/probando-controlador-usuario", ControladorUsuario.pruebaUsuarios);
 
+//crear ruta para crear usuarios y utilizamos el método position
+api.post("/crear-usuario", ControladorUsuario.crearUsuario);
+
 //exportamos el módulo
 module.exports = api;
