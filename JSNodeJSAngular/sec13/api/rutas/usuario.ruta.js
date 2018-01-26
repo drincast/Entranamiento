@@ -15,5 +15,8 @@ api.get("/probando-controlador-usuario", ControladorUsuario.pruebaUsuarios);
 //crear ruta para crear usuarios y utilizamos el método position
 api.post("/crear-usuario", ControladorUsuario.crearUsuario);
 
+//ruta para el ingreso del usuario
+api.post("/login", ControladorUsuario.ingresoUsuario);
+
 //exportamos el módulo
 module.exports = api;
