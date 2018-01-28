@@ -101,11 +101,35 @@ function actualizarUsuario(req, res){
           return res.status(200).send({usuarioActualizado});
         }
       }
-    })
+    });
   }
+}
 
+function  borrarUsuario(req, res){
+  //id que se va actualizar
+  var id = req.params.id;
 
+  var actualizar = req.body;
 
+  if(id != req.usuarioToken.sub){
+    return res.status(500).send({mensaje: "No tienes permiso para eliminar el usario"});
+  }
+  else{
+    //recorremos la base de datos findByIdAndRemove
+    Usuario.findByIdAndRemove(id, (error, usuarioBorrado)=>{
+      if(error){
+        return res.status(500).send({mensaje: "Error al borrar el usario"});
+      }
+      else{
+        if(!usuarioBorrado){
+          return res.status(404).send({mensaje: "No se logro borrar el usuario"});
+        }
+        else{
+          return res.status(200).send({usuarioBorrado});
+        }
+      }
+    });
+  }
 }
 
 //exportamos los métodos del módulo
@@ -113,5 +137,6 @@ module.exports = {
   pruebaUsuarios,
   crearUsuario,
   ingresoUsuario,
-  actualizarUsuario
+  actualizarUsuario,
+  borrarUsuario
 }

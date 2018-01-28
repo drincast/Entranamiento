@@ -24,5 +24,8 @@ api.post("/login", ControladorUsuario.ingresoUsuario);
 //put es para actualizar información en la base de datos
 api.put("/actualizar-usuario/:id", md_aut.autenticacion, ControladorUsuario.actualizarUsuario);
 
+//ruta para borrar usuarios
+api.delete("/borrar-usuario/:id", md_aut.autenticacion, ControladorUsuario.borrarUsuario);
+
 //exportamos el módulo
 module.exports = api;
