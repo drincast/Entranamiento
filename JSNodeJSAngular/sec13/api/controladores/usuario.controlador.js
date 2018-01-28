@@ -14,8 +14,6 @@ function pruebaUsuarios(req, res){
   res.status(200).send({mensaje:"Probando el controlador de usuarios"});
 }
 
-
-
 //método para crear usuarios
 function crearUsuario(req, res){
   //se crea objeto del modelo
@@ -80,9 +78,40 @@ function ingresoUsuario(req, res){
   })
 }
 
+function actualizarUsuario(req, res){
+  //id que se va actualizar
+  var id = req.params.id;
+
+  var actualizar = req.body;
+
+  if(id != req.usuarioToken.sub){
+    return res.status(500).send({mensaje: "No tienes permiso para actualizar el usario"});
+  }
+  else{
+    //recorremos la base de datos findByIdAndUpdate
+    Usuario.findByIdAndUpdate(id, actualizar, (error, usuarioActualizado)=>{
+      if(error){
+        return res.status(500).send({mensaje: "Error al actualizar el usario"});
+      }
+      else{
+        if(!usuarioActualizado){
+          return res.status(404).send({mensaje: "No se logro actualizar el usuario"});
+        }
+        else{
+          return res.status(200).send({usuarioActualizado});
+        }
+      }
+    })
+  }
+
+
+
+}
+
 //exportamos los métodos del módulo
 module.exports = {
   pruebaUsuarios,
   crearUsuario,
-  ingresoUsuario
+  ingresoUsuario,
+  actualizarUsuario
 }

@@ -21,5 +21,8 @@ api.post("/crear-usuario", ControladorUsuario.crearUsuario);
 //ruta para el ingreso del usuario
 api.post("/login", ControladorUsuario.ingresoUsuario);
 
+//put es para actualizar información en la base de datos
+api.put("/actualizar-usuario/:id", md_aut.autenticacion, ControladorUsuario.actualizarUsuario);
+
 //exportamos el módulo
 module.exports = api;
