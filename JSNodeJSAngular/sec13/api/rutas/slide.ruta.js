@@ -26,7 +26,13 @@ api.get("/probando-controlador-slide", ControladorSlide.pruebaSlide);
 api.get("/mostrar-slides", ControladorSlide.mostrarSlides);
 
 //ruta para subir slide, usando token de autenticación, y la ruta dode se suben las imagenes
-api.post("/crear-slide", [md_aut.autenticacion, fichero], ControladorSlide.crearSlide)
+api.post("/crear-slide", [md_aut.autenticacion, fichero], ControladorSlide.crearSlide);
+
+//modificar un slide
+api.put("/actualizar-slide/:id", [md_aut.autenticacion, fichero], ControladorSlide.actualizarSlide);
+
+//borrar slides
+api.delete("/borrar-slide/:id", md_aut.autenticacion, ControladorSlide.borrarSlide);
 
 //exportamos el módulo
 module.exports = api;

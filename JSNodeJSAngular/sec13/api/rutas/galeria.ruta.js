@@ -23,7 +23,10 @@ api.get("/probando-controlador-galeria", ControladorGaleria.pruebaGaleria);
 
 api.get("/mostrar-galeria", ControladorGaleria.mostrarGaleria);
 
-api.post("/crear-foto", [md_aut.autenticacion, fichero], ControladorGaleria.crearFoto)
+api.post("/crear-foto", [md_aut.autenticacion, fichero], ControladorGaleria.crearFoto);
+
+//borrar foto
+api.delete("/borrar-foto/:id", md_aut.autenticacion, ControladorGaleria.borrarFoto);
 
 //exportamos el módulo
 module.exports = api;

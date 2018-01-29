@@ -1,6 +1,11 @@
 "use strict"
 
-var Slide = require("../modelo/slide.modelo.js")
+//manejo de archivos, en el ejemplo se usa para eliminar la anterior imagen
+var fs = require("fs");
+
+var Slide = require("../modelo/slide.modelo.js");
+
+
 
 //método de prueba
 function pruebaSlide(req, res){
@@ -56,9 +61,106 @@ function mostrarSlides(req, res){
   }).sort("_id");
 }
 
+function actualizarSlide(req, res){
+  //variable del modelo Slide
+  var slideX = new Slide();
+
+  //id que se manda por la url
+  var id = req.params.id;
+
+  //obtenemos los parametros de la peticion
+  var parametros = req.body;
+
+  slideX.titulo = parametros.titulo;
+  slideX.descripcion = parametros.descripcion;
+  //slideX._id = id;
+
+  var cambioImagen = false;
+
+  if(parametros.actualizarImagen == "0"){
+    slideX.imagen = parametros.rutaImagenActual;
+    cambioImagen = true;
+  }
+  else{
+    if(req.files){
+      var imagenRuta = req.files.imagen.path;
+      var imgSplit = imagenRuta.split("\\");
+
+      slideX.imagen = imgSplit[2];
+
+      var antiguaImagen = parametros.rutaImagenActual;
+      var rutaImagen = "./ficheros/slide/"+antiguaImagen;
+
+      fs.unlink(rutaImagen);
+    }
+
+    cambioImagen = true;
+  }
+
+  if(cambioImagen){
+    if(slideX.titulo != null && slideX.descripcion != null && slideX.imagen != null){
+      var actualizar = {
+        "titulo": slideX.titulo,
+        "descripcion": slideX.descripcion,
+        "imagen": slideX.imagen
+      }
+      Slide.findByIdAndUpdate(id, actualizar, (error, slideActualizado) =>{
+        if(error){
+          res.status(500).send({mensaje: "Error al actualizar el slide"});
+        }else{
+          if(!slideActualizado){
+            res.status(404).send({mensaje: "No se logro actualizar el slide"});
+          }
+          else{
+            res.status(200).send({slideActualizado});
+          }
+        }
+      });
+    }
+  }
+}
+
+function borrarSlide(req, res){
+  var id = req.params.id;
+
+  Slide.findOne({_id: id}, (error, capturarSlide)=>{
+    if(error){
+      res.status(500).send({mensaje: "Error al cargar el slide"});
+    }
+    else{
+      if(!capturarSlide){
+        res.status(404).send({mensaje: "No se logro cargar el slide"});
+      }
+      else{
+        var imagen = capturarSlide.imagen;
+        var rutaImagen = "./ficheros/slide/"+imagen;
+        fs.unlink(rutaImagen);
+      }
+    }
+  });
+
+  setTimeout(()=>{
+    Slide.findByIdAndRemove(id, (error, borrarSlide)=>{
+      if(error){
+        res.status(500).send({mensaje: "Error al eliminar el slide"});
+      }
+      else{
+        if(!borrarSlide){
+          res.status(404).send({mensaje: "No se logro eliminar el slide"});
+        }
+        else{
+          res.status(200).send({borrarSlide});
+        }
+      }
+    });
+  }, 1000);
+}
+
 //exportamos los métodos del módulo
 module.exports = {
   pruebaSlide,
   crearSlide,
-  mostrarSlides
+  mostrarSlides,
+  actualizarSlide,
+  borrarSlide
 }

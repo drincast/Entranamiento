@@ -1,5 +1,7 @@
 "use strict"
 
+var fs = require("fs");
+
 var Galeria = require("../modelo/galeria.modelo.js")
 
 //método de prueba
@@ -49,10 +51,50 @@ function mostrarGaleria(req, res){
   }).sort("_id");
 }
 
+function borrarFoto(req, res){
+  var id = req.params.id;
+
+  Galeria.findOne({_id: id}, (error, capturarFoto)=>{
+    if(error){
+      res.status(500).send({mensaje: "Error al cargar la foto"});
+    }
+    else{
+      if(!capturarFoto){
+        res.status(404).send({mensaje: "No se logro cargar la foto"});
+      }
+      else{
+        var imagen = capturarFoto.foto;
+        var rutaImagen = "./ficheros/galeria/"+imagen;
+        fs.unlink(rutaImagen, (error)=>{
+          if(error){
+            console.log("la imagen: " + rutaImagen + " ya no existe");
+          }
+        });
+      }
+    }
+  });
+
+  setTimeout(()=>{
+    Galeria.findByIdAndRemove(id, (error, borrarFoto)=>{
+      if(error){
+        res.status(500).send({mensaje: "Error al eliminar la foto|"});
+      }
+      else{
+        if(!borrarFoto){
+          res.status(404).send({mensaje: "No se logro eliminar la foto"});
+        }
+        else{
+          res.status(200).send({borrarFoto});
+        }
+      }
+    });
+  }, 1000);
+}
 
 //exportamos los métodos del módulo
 module.exports = {
   pruebaGaleria,
   crearFoto,
-  mostrarGaleria
+  mostrarGaleria,
+  borrarFoto
 }
