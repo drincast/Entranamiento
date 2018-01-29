@@ -25,6 +25,9 @@ api.get("/probando-controlador-slide", ControladorSlide.pruebaSlide);
 //metodo para mostrar los slides
 api.get("/mostrar-slides", ControladorSlide.mostrarSlides);
 
+//metodo para mostrar los slides
+api.get("/tomar-imagen-slide/:imagen", ControladorSlide.tomarImagenSlides);
+
 //ruta para subir slide, usando token de autenticación, y la ruta dode se suben las imagenes
 api.post("/crear-slide", [md_aut.autenticacion, fichero], ControladorSlide.crearSlide);
 

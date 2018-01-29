@@ -23,6 +23,8 @@ api.get("/probando-controlador-galeria", ControladorGaleria.pruebaGaleria);
 
 api.get("/mostrar-galeria", ControladorGaleria.mostrarGaleria);
 
+api.get("/tomar-imagen-galeria/:foto", ControladorGaleria.tomarImagenGaleria);
+
 api.post("/crear-foto", [md_aut.autenticacion, fichero], ControladorGaleria.crearFoto);
 
 //borrar foto

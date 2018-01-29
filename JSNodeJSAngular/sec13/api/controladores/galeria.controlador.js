@@ -2,6 +2,8 @@
 
 var fs = require("fs");
 
+var path = require("path");
+
 var Galeria = require("../modelo/galeria.modelo.js")
 
 //método de prueba
@@ -91,10 +93,25 @@ function borrarFoto(req, res){
   }, 1000);
 }
 
+function tomarImagenGaleria(req, res){
+  var imagen = req.params.foto;
+  var rutaImagen = "./ficheros/galeria/"+imagen;
+
+  fs.exists(rutaImagen, (exists)=>{
+    if(exists){
+      res.sendFile(path.resolve(rutaImagen));
+    }
+    else{
+      res.status(404).send({mensaje:"La imagen no existe"});
+    }
+  });
+}
+
 //exportamos los métodos del módulo
 module.exports = {
   pruebaGaleria,
   crearFoto,
   mostrarGaleria,
-  borrarFoto
+  borrarFoto,
+  tomarImagenGaleria
 }

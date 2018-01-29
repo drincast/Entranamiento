@@ -3,6 +3,8 @@
 //manejo de archivos, en el ejemplo se usa para eliminar la anterior imagen
 var fs = require("fs");
 
+var path = require("path");
+
 var Slide = require("../modelo/slide.modelo.js");
 
 
@@ -156,11 +158,29 @@ function borrarSlide(req, res){
   }, 1000);
 }
 
+//ver imagen
+function tomarImagenSlides(req, res){
+  var imagen = req.params.imagen;
+  var rutaImagen = "./ficheros/slide/"+imagen;
+
+  console.log(imagen, rutaImagen);
+
+  fs.exists(rutaImagen, (exists)=>{
+    if(exists){
+      res.sendFile(path.resolve(rutaImagen));
+    }
+    else{
+      res.status(404).send({mensaje:"La imagen no existe"});
+    }
+  });
+}
+
 //exportamos los métodos del módulo
 module.exports = {
   pruebaSlide,
   crearSlide,
   mostrarSlides,
   actualizarSlide,
-  borrarSlide
+  borrarSlide,
+  tomarImagenSlides
 }
