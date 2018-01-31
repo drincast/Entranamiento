@@ -40,11 +40,14 @@
   <!-- SLIDESHOW -->
   <div class="gestores">
     <h1>Gestor slide</h1>
-    <form>
-      <input type="text" placeholder="agregar titulo" required>
-      <textarea name="name" rows="8" cols="80" maxlength="55" placeholder="descripcion ..." required></textarea>
-      <input type="file" required>
+    <form #formSlides="ngForm" (ngSubmit)="nuevoSlide()">
+      <input type="text" placeholder="agregar titulo" name="titulo" #titulo="ngModel" [(ngModel)]="itemSlides.titulo" required>
+      <textarea name="descripcion" rows="8" cols="80" maxlength="55" placeholder="descripcion ..." #descripcion="ngModel" [(ngModel)]="itemSlides.descripcion" required></textarea>
+      <input type="file" (change)="cargarFichero($event)" required>
       <input type="submit" name="" value="Enviar" />
+      <div *ngIf="validarIngreso" style="color:red; margin-bottom:10px;">
+        {{mensaje}}
+      </div>
     </form>
   </div>
   <tag-slide></tag-slide>

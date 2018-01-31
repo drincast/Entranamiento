@@ -49,4 +49,37 @@ export class ServicioSlide{
   ejecutar(){
     return this._http.get(this.url).map(resultado => resultado.json());
   }
+
+  subirNuevoSlide(recurso, items, token, imagen){
+    if(!imagen){
+      return new Promise((resolver, rechazar)=>{
+        rechazar("No hay imagen ara subir");
+      });
+    }
+    else{
+      return new Promise((resolver, rechazar)=>{
+        var formData:any = new FormData();
+        var xhr = new XMLHttpRequest();
+
+        formData.append("imagen", imagen[0]);
+        formData.append("titulo", items.titulo);
+        formData.append("descripcion", items.descripcion);
+
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4){
+            if(xhr.status === 200){
+              resolver(JSON.parse(xhr.response));
+            }
+            else{
+              rechazar(xhr.response);
+            }
+          }
+        }
+
+        xhr.open("POST", recurso, true);
+        xhr.setRequestHeader("Authorization", token);
+        xhr.send(formData);
+      });
+    }
+  }
 }

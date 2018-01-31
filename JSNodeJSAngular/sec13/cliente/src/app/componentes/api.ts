@@ -2,23 +2,35 @@ import { Component, OnInit } from '@angular/core';
 
 import { ListaUsuarios } from '../modelos/usuario.modelo';
 
+import { ItemSlides } from '../modelos/slide.modelo';
+
 import { ServicioUsuarios } from '../servicios/usuarios.servicio';
+
+import { ServicioSlide } from '../servicios/slide.servicio';
+
+import { RutaServidor } from '../ruta_servidor';
 
 @Component({
   selector: "tag-api",
   templateUrl: "../vistas/api.html",
-  providers: [ServicioUsuarios]
+  providers: [ServicioUsuarios, ServicioSlide]
 })
 
 export class ApiComponente {
   public identificado:string;
   public usuario:string;
   public listaUsuarios:ListaUsuarios;
+  public itemSlides:ItemSlides;
   public validarIngreso:boolean = false;
   public mensaje;
+  public subirImagen: Array<File>;
+  public url:string;
 
-  constructor(private _servicioUsuarios:ServicioUsuarios){
+  constructor(private _servicioUsuarios:ServicioUsuarios,
+              private _servicioSlide:ServicioSlide){
     this.listaUsuarios = new ListaUsuarios("", "");
+    this.itemSlides = new ItemSlides("", "", "");
+    this.url = RutaServidor.url;
   }
 
   ngOnInit(){
@@ -57,6 +69,40 @@ export class ApiComponente {
     this.usuario = null;
   }
 
+  cargarFichero(fileInput: any){
+    this.subirImagen = <Array<File>>fileInput.target.files;
+    console.log(this.subirImagen);
+
+    if(this.subirImagen[0].size <= 2000000
+      && (this.subirImagen[0].type === "image/jpeg" || this.subirImagen[0].type === "image/png")){
+        this.mensaje = null;
+        this.validarIngreso = false;
+        return this.subirImagen;
+    }
+    else{
+      this.validarIngreso = true;
+      this.mensaje = "La extension o el peso del archivo no es valido";
+      this.subirImagen = null;
+      return this.subirImagen;
+    }
 
 
+  }
+
+  nuevoSlide(){
+    let recurso = this.url + 'crear-slide';
+    this._servicioSlide.subirNuevoSlide(recurso, this.itemSlides, this.identificado, this.subirImagen).then(
+      (resultado)=>{
+        this.validarIngreso = false;
+        this.mensaje = null;
+        window.location.reload();
+      },
+      (error)=>{
+        this.validarIngreso = false;
+        this.mensaje = null;
+        console.log(error);
+      }
+    );
+    console.log(this.itemSlides);
+  }
 }

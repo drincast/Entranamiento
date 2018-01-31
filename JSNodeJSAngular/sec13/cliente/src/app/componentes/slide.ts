@@ -31,7 +31,6 @@ export class SlideComponente{
       resultado => {
         this.slideJson = resultado.mostrarSlides;
         this.url = RutaServidor.url + "tomar-imagen-slide/";
-        console.log(this.slideJson);
       },
 
       error => {

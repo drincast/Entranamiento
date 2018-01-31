@@ -25,7 +25,6 @@ export class ServicioUsuarios{
 
   login(lstUsuarios, token){
     lstUsuarios.token = token; //se crea la propiedad aca, en el modelo solo hay dos definidas
-    console.log(lstUsuarios);
     let parametros = JSON.stringify(lstUsuarios);
 
     //cuando se envian peticiones POST, se debe declarar el contenido que se va a envíar, en la cabecera Http
