@@ -14,6 +14,8 @@ import 'rxjs/add/operator/map';
 //para permitir utilizar rxjs que es la respuesta del mapeo y poder utilizarla, mape de respuestas
 import { Observable } from 'rxjs/Observable';
 
+import { RutaServidor } from '../ruta_servidor';
+
 @Injectable()
 
 export class ServicioSlide{
@@ -29,7 +31,7 @@ export class ServicioSlide{
   constructor(private _http:Http){
 
     //instalar el componente Allow-Control-Allo-Origin: *
-    this.url = "http://tutorialesatualcance.com/slide.json";
+    this.url = RutaServidor.url + "mostrar-slides";
   }
 
   tomarJsonSlide(){

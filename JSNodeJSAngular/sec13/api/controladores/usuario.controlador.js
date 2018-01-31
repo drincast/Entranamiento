@@ -49,30 +49,36 @@ function ingresoUsuario(req, res){
 
   Usuario.findOne({usuario:usuario}, (error, seleccionUsuario)=>{
 
-    console.log(parametros);
+    //console.log(parametros, password);
 
     if(error){
       res.status(500).send({mensaje:"Error al ingresar el usuario"});
     }
     else{
-      if(!usuario){
+      if(!seleccionUsuario){
         res.status(404).send({mensaje:"El usuario no existe"});
       }
       else{
-        bcrypt.compare(password, seleccionUsuario.password, function(error, ok){
-          if(ok){
-            //res.status(200).send({seleccionUsuario});
+        if(seleccionUsuario !== null){
+          bcrypt.compare(password, seleccionUsuario.password, function(error, ok){
+            if(ok){
+              //res.status(200).send({seleccionUsuario});
 
-            //debemos enviar un parametro token en verdadero
-            if(parametros.token){
-              //devolvemos el token jwt
-              res.status(200).send({token: token.crearToken(seleccionUsuario)});
+              //debemos enviar un parametro token en verdadero
+              if(parametros.token){
+                //devolvemos el token jwt
+                res.status(200).send({token: token.crearToken(seleccionUsuario), seleccionUsuario});
+              }
             }
-          }
-          else{
-            res.status(404).send({mensaje:"El usuario no ha logrado ingresar"});
-          }
-        })
+            else{
+              res.status(403).send({mensaje:"El usuario no ha logrado ingresar"});
+            }
+          });
+        }
+        else{
+          res.status(403).send({mensaje:"login o password incorrectos ..."});
+        }
+
       }
     }
   })

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ServicioSlide } from '../servicios/slide.servicio';
 
+import { RutaServidor } from '../ruta_servidor';
+
 @Component({
   selector: "tag-slide",
   templateUrl: "../vistas/slide.html",
@@ -16,6 +18,7 @@ import { ServicioSlide } from '../servicios/slide.servicio';
 export class SlideComponente{
   public slideJson;
   public identificado:string;
+  public url:string;
 
   constructor(private _ServicioSlide:ServicioSlide){
     //prueba del servicios
@@ -26,7 +29,9 @@ export class SlideComponente{
     //imprimir el OBSERVABLE que es el resultado del mapeo.
     this._ServicioSlide.tomarJsonSlide().subscribe(
       resultado => {
-        this.slideJson = resultado;
+        this.slideJson = resultado.mostrarSlides;
+        this.url = RutaServidor.url + "tomar-imagen-slide/";
+        console.log(this.slideJson);
       },
 
       error => {

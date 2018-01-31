@@ -40,8 +40,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
 app.use("/api", rutaUsuario);
 app.use("/api", rutaSlide);
 app.use("/api", rutaGaleria);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioGaleria } from '../servicios/galeria.servicio';
+import { RutaServidor } from '../ruta_servidor';
 
 @Component({
   selector: "tag-galeria",
@@ -10,6 +11,7 @@ import { ServicioGaleria } from '../servicios/galeria.servicio';
 export class GaleriaComponente{
   public galeriaJson;
   public identificado:string = "ok";
+  public url:string;
 
   constructor(private _ServicioGaleria:ServicioGaleria){
     //prueba del servicios
@@ -17,7 +19,8 @@ export class GaleriaComponente{
 
     this._ServicioGaleria.tomarJsonGaleria().subscribe(
       resultado => {
-        this.galeriaJson = resultado;
+        this.url = RutaServidor.url + "tomar-imagen-galeria/";
+        this.galeriaJson = resultado.mostrarGaleria;
         // console.log("this.galeriaJson: ", this.galeriaJson);
         // console.log("this.galeriaJson: ", this.galeriaJson[0]["foto"]);
       },

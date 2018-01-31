@@ -20,7 +20,9 @@
 
     <input id="btnLogin" type="submit" name="" value="Enviar">
     <div *ngIf="validarIngreso" style="text-align:center;">
-      !Datoa incorrectos¡
+      <div style="color:red; marginBottom:5px;">
+        {{mensaje}}
+      </div>
     </div>
   </form>
   <a [routerLink]="['/index']"> <button type="button" name="button" class="btn-frontend">Regresar</button></a>

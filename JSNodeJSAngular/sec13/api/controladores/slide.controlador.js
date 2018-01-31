@@ -45,6 +45,7 @@ function crearSlide(req, res){
       });
     }
   }
+
 }
 
 function mostrarSlides(req, res){

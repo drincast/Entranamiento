@@ -15,6 +15,7 @@ export class ApiComponente {
   public usuario:string;
   public listaUsuarios:ListaUsuarios;
   public validarIngreso:boolean = false;
+  public mensaje;
 
   constructor(private _servicioUsuarios:ServicioUsuarios){
     this.listaUsuarios = new ListaUsuarios("", "");
@@ -26,24 +27,23 @@ export class ApiComponente {
   }
 
   onSubmit(){
-    this._servicioUsuarios.login().subscribe(
+    this._servicioUsuarios.login(this.listaUsuarios, "true").subscribe(
       resultado => {
-        for (let i = 0; i < resultado.length; i++) {
-          if(resultado[i].usuario == this.listaUsuarios.usuario
-             && resultado[i].password == this.listaUsuarios.password){
-               this.identificado = resultado[i].id;
-               this.usuario = resultado[i].usuario;
+        this.identificado = resultado.token;
+        this.usuario = resultado.seleccionUsuario.usuario;
 
-               localStorage.setItem("id", this.identificado);
-               localStorage.setItem("usuario", this.usuario);
-          }else{
-            this.validarIngreso = true;
-          }
-        }
+        sessionStorage.setItem("id", this.identificado);
+        sessionStorage.setItem("usuario", this.usuario);
+        this.mensaje = null; //para limpiar el mensaje
       },
       error => {
         let errorMensaje = <any>error;
-        console.log(errorMensaje);
+        let err = JSON.parse(error._body);
+        // console.log(err);
+        // console.log(err.mensaje);
+        this.validarIngreso = true;
+        this.mensaje = err.mensaje;
+        //alert(err.mensaje);
       }
     );
     //console.log(this.listaUsuarios.usuario, this.listaUsuarios.password);

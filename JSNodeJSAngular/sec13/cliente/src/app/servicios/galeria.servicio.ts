@@ -14,6 +14,8 @@ import 'rxjs/add/operator/map';
 //para permitir utilizar rxjs que es la respuesta del mapeo y poder utilizarla
 import { Observable } from 'rxjs/Observable';
 
+import { RutaServidor } from '../ruta_servidor';
+
 @Injectable()
 
 export class ServicioGaleria{
@@ -21,7 +23,7 @@ export class ServicioGaleria{
   public url:string;
 
   constructor(private _http:Http){
-    this.url = "http://tutorialesatualcance.com/galeria.json";
+    this.url = RutaServidor.url +  "mostrar-galeria";
   }
 
   prueba(){
