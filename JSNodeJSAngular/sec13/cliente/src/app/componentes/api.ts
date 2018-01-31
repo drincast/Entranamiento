@@ -98,8 +98,8 @@ export class ApiComponente {
         window.location.reload();
       },
       (error)=>{
-        this.validarIngreso = false;
-        this.mensaje = null;
+        this.validarIngreso = true;
+        this.mensaje = "no se logro subir el slide";
         console.log(error);
       }
     );
