@@ -5,6 +5,8 @@ import { ServicioSlide } from '../servicios/slide.servicio';
 
 import { RutaServidor } from '../ruta_servidor';
 
+import { ItemSlides } from '../modelos/slide.modelo';
+
 @Component({
   selector: "tag-slide",
   templateUrl: "../vistas/slide.html",
@@ -19,6 +21,10 @@ export class SlideComponente{
   public slideJson;
   public identificado:string;
   public url:string;
+  public itemSlide:ItemSlides;
+  public idSlide;
+  public formEditarSlide:boolean = false;
+  public cambiarImagen:boolean = false;
 
   constructor(private _ServicioSlide:ServicioSlide){
     //prueba del servicios
@@ -43,7 +49,7 @@ export class SlideComponente{
     //this.saludo();
     //objeto con propiedades de slide
 
-    this.identificado = localStorage.getItem("id");
+    this.identificado = sessionStorage.getItem("id");
 
     var p = {
       paginacion: document.querySelectorAll("#paginacion li"),
@@ -191,7 +197,11 @@ export class SlideComponente{
             m.inicioSlide();
           }
         }, 2);
-      }
+      },
+
+
+
+
     };
 
 
@@ -205,6 +215,14 @@ export class SlideComponente{
   // saludo(){
   //   console.log("hola");
   // }
+
+  //editar slide
+  editarSlide(slide){
+    this.idSlide = slide._id;
+    this.itemSlide = new ItemSlides(slide.imagen, slide.titulo, slide.descripcion);
+    //this.url = RutaServidor.url;
+    this.formEditarSlide = true;
+  }
 }
 
 /*

@@ -70,9 +70,9 @@ export class ApiComponente {
   }
 
   cerrarSesion(){
-    localStorage.removeItem('id');
-    localStorage.removeItem('usuario');
-    localStorage.clear();
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('usuario');
+    sessionStorage.clear();
     this.identificado = null;
     this.usuario = null;
   }
