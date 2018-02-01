@@ -4,16 +4,20 @@ import { ListaUsuarios } from '../modelos/usuario.modelo';
 
 import { ItemSlides } from '../modelos/slide.modelo';
 
+import { ItemGaleria } from '../modelos/galeria.modelo';
+
 import { ServicioUsuarios } from '../servicios/usuarios.servicio';
 
 import { ServicioSlide } from '../servicios/slide.servicio';
+
+import { ServicioGaleria } from '../servicios/galeria.servicio';
 
 import { RutaServidor } from '../ruta_servidor';
 
 @Component({
   selector: "tag-api",
   templateUrl: "../vistas/api.html",
-  providers: [ServicioUsuarios, ServicioSlide]
+  providers: [ServicioUsuarios, ServicioSlide, ServicioGaleria]
 })
 
 export class ApiComponente {
@@ -25,17 +29,21 @@ export class ApiComponente {
   public mensaje;
   public subirImagen: Array<File>;
   public url:string;
+  public itemGaleria:ItemGaleria;
 
-  constructor(private _servicioUsuarios:ServicioUsuarios,
-              private _servicioSlide:ServicioSlide){
+
+  constructor(private _servicioUsuarios:ServicioUsuarios
+              , private _servicioSlide:ServicioSlide
+              , private _servicioGaleria:ServicioGaleria){
     this.listaUsuarios = new ListaUsuarios("", "");
     this.itemSlides = new ItemSlides("", "", "");
+    //this.itemGaleria = new ItemGaleria("");
     this.url = RutaServidor.url;
   }
 
   ngOnInit(){
-    this.identificado = localStorage.getItem("id");
-    this.usuario = localStorage.getItem("usuario");
+    this.identificado = sessionStorage.getItem("id");
+    this.usuario = sessionStorage.getItem("usuario");
   }
 
   onSubmit(){
@@ -100,9 +108,22 @@ export class ApiComponente {
       (error)=>{
         this.validarIngreso = true;
         this.mensaje = "no se logro subir el slide";
-        console.log(error);
       }
     );
-    console.log(this.itemSlides);
+  }
+
+  nuevaFotoGaleria(){
+    let recurso = this.url + 'crear-foto';
+    this._servicioGaleria.subirFotoGaleria(recurso, this.identificado, this.subirImagen).then(
+      (resultado)=>{
+        this.validarIngreso = false;
+        this.mensaje = null;
+        window.location.reload();
+      },
+      (error)=>{
+        this.validarIngreso = true;
+        this.mensaje = "no se logro subir el slide";
+      }
+    );
   }
 }

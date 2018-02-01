@@ -33,4 +33,35 @@ export class ServicioGaleria{
   tomarJsonGaleria(){
     return this._http.get(this.url).map(resultado => resultado.json());
   }
+
+  subirFotoGaleria(recurso, token, foto){
+    if(!foto){
+      return new Promise((resolver, rechazar)=>{
+        rechazar("No hay imagen ara subir");
+      });
+    }
+    else{
+      return new Promise((resolver, rechazar)=>{
+        var formData:any = new FormData();
+        var xhr = new XMLHttpRequest();
+
+        formData.append("foto", foto[0]);
+
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4){
+            if(xhr.status === 200){
+              resolver(JSON.parse(xhr.response));
+            }
+            else{
+              rechazar(xhr.response);
+            }
+          }
+        }
+
+        xhr.open("POST", recurso, true);
+        xhr.setRequestHeader("Authorization", token);
+        xhr.send(formData);
+      });
+    }
+  }
 }

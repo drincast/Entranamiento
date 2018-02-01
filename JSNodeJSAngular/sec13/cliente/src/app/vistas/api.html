@@ -55,8 +55,8 @@
   <!-- GALERIA DE IMAGENES -->
   <div class="gestores">
     <h1>Gestor galeria</h1>
-    <form>
-      <input type="file" required>
+    <form #formGaleria="ngForm" (ngSubmit)="nuevaFotoGaleria()">
+      <input type="file" (change)="cargarFichero($event)" required>
       <input type="submit" name="" value="Enviar" />
     </form>
   </div>
