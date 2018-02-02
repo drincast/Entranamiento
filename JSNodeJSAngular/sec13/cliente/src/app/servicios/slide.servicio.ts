@@ -31,7 +31,7 @@ export class ServicioSlide{
   constructor(private _http:Http){
 
     //instalar el componente Allow-Control-Allo-Origin: *
-    this.url = RutaServidor.url + "mostrar-slides";
+    this.url = RutaServidor.url;
   }
 
   tomarJsonSlide(){
@@ -43,7 +43,8 @@ export class ServicioSlide{
 
     // let resp;
     // setTimeout("resp = this.ejecutar();", 5000);
-    return this._http.get(this.url).map(resultado => resultado.json());
+    let recurso = this.url +  "mostrar-slides";
+    return this._http.get(recurso).map(resultado => resultado.json());
   }
 
   ejecutar(){
@@ -53,7 +54,7 @@ export class ServicioSlide{
   subirNuevoSlide(recurso, items, token, imagen){
     if(!imagen){
       return new Promise((resolver, rechazar)=>{
-        rechazar("No hay imagen ara subir");
+        rechazar("No hay imagen para subir");
       });
     }
     else{
@@ -81,5 +82,69 @@ export class ServicioSlide{
         xhr.send(formData);
       });
     }
+  }
+
+  actualizarItemSlide(recurso, items, token, imagen){
+    if(!imagen){
+      return new Promise((resolver, rechazar)=>{
+        let formData:any = new FormData();
+        let xhr = new XMLHttpRequest();
+
+        formData.append("titulo", items.titulo);
+        formData.append("descripcion", items.descripcion);
+        formData.append("actualizarImagen", 0);
+        formData.append("rutaImagenActual", items.imagen);
+
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4){
+            if(xhr.status === 200){
+              resolver(JSON.parse(xhr.response));
+            }
+            else{
+              rechazar(xhr.response);
+            }
+          }
+        }
+
+        xhr.open("PUT", recurso, true);
+        xhr.setRequestHeader("Authorization", token);
+        xhr.send(formData);
+      });
+    }
+    else{
+      return new Promise((resolver, rechazar)=>{
+        let formData:any = new FormData();
+        let xhr = new XMLHttpRequest();
+
+        formData.append("imagen", imagen[0]);
+        formData.append("titulo", items.titulo);
+        formData.append("descripcion", items.descripcion);
+        formData.append("actualizarImagen", 1);
+        formData.append("rutaImagenActual", items.imagen);
+
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4){
+            if(xhr.status === 200){
+              resolver(JSON.parse(xhr.response));
+            }
+            else{
+              rechazar(xhr.response);
+            }
+          }
+        }
+
+        xhr.open("PUT", recurso, true);
+        xhr.setRequestHeader("Authorization", token);
+        xhr.send(formData);
+      });
+    }
+  }
+
+  borrarItemSlide(id){
+    let recurso = this.url + 'borrar-slide/' + id;
+    let headers = new Headers({"Content-Type":"application/json"
+                                ,"Authorization": sessionStorage.getItem("id")});
+                                
+    return this._http.delete(recurso, {headers: headers}).map(resultado=>resultado.json());
   }
 }

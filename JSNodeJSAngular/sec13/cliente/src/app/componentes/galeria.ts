@@ -19,7 +19,7 @@ export class GaleriaComponente{
 
     this._ServicioGaleria.tomarJsonGaleria().subscribe(
       resultado => {
-        this.url = RutaServidor.url + "tomar-imagen-galeria/";
+        this.url = RutaServidor.url;
         this.galeriaJson = resultado.mostrarGaleria;
         // console.log("this.galeriaJson: ", this.galeriaJson);
         // console.log("this.galeriaJson: ", this.galeriaJson[0]["foto"]);
@@ -180,5 +180,18 @@ export class GaleriaComponente{
 
     // setTimeout(()=> {
     // }, 1);
+  }
+
+  borrarFoto(galeria){
+    let id = galeria._id;
+
+    this._ServicioGaleria.borrarItemFoto(id).subscribe(
+      resultado=>{
+        window.location.reload();
+      },
+      error => {
+        console.log("error", error);
+      }
+    )
   }
 }

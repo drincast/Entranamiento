@@ -25,6 +25,9 @@ export class SlideComponente{
   public idSlide;
   public formEditarSlide:boolean = false;
   public cambiarImagen:boolean = false;
+  public subirImagen:Array<File>;
+  public validarIngreso:boolean = false;
+  public mensaje;
 
   constructor(private _ServicioSlide:ServicioSlide){
     //prueba del servicios
@@ -36,7 +39,7 @@ export class SlideComponente{
     this._ServicioSlide.tomarJsonSlide().subscribe(
       resultado => {
         this.slideJson = resultado.mostrarSlides;
-        this.url = RutaServidor.url + "tomar-imagen-slide/";
+        this.url = RutaServidor.url;
       },
 
       error => {
@@ -64,8 +67,8 @@ export class SlideComponente{
       intervaloVerificar: undefined
     }
 
-
     //objeto con los métodos del slide
+
     var m = {
       inicioSlide: function(){
         for(var i = 0; i < p.paginacion.length; i++){
@@ -198,30 +201,63 @@ export class SlideComponente{
           }
         }, 2);
       },
-
-
-
-
     };
 
-
-    //m.inicioSlide();
     m.intervalVEHTML();
-
-    // setTimeout(() =>{
-    // }, 90);
   }
 
-  // saludo(){
-  //   console.log("hola");
-  // }
-
   //editar slide
+
   editarSlide(slide){
     this.idSlide = slide._id;
     this.itemSlide = new ItemSlides(slide.imagen, slide.titulo, slide.descripcion);
     //this.url = RutaServidor.url;
     this.formEditarSlide = true;
+  }
+
+  cargarFichero(fileInput: any){
+    this.subirImagen = <Array<File>>fileInput.target.files;
+    console.log(this.subirImagen);
+
+    if(this.subirImagen[0].size <= 2000000
+      && (this.subirImagen[0].type === "image/jpeg" || this.subirImagen[0].type === "image/png")){
+        this.mensaje = null;
+        this.validarIngreso = false;
+        return this.subirImagen;
+    }
+    else{
+      this.validarIngreso = true;
+      this.mensaje = "La extension o el peso del archivo no es valido";
+      this.subirImagen = null;
+      return this.subirImagen;
+    }
+  }
+
+  actualizarSlide(){
+    let recurso = this.url+"actualizar-slide/" + this.idSlide;
+    this._ServicioSlide.actualizarItemSlide(recurso, this.itemSlide, this.identificado, this.subirImagen).then(
+      (resultado)=>{
+        window.location.reload();
+      },
+
+      (error)=>{
+        console.log("error", error);
+      }
+    );
+  }
+
+  borrarSlide(slide){
+    let id = slide._id;
+
+    this._ServicioSlide.borrarItemSlide(id).subscribe(
+      (resultado)=>{
+        window.location.reload();
+      },
+
+      (error)=>{
+        console.log("error", error);
+      }
+    );
   }
 }
 

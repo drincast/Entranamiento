@@ -19,19 +19,21 @@ import { RutaServidor } from '../ruta_servidor';
 @Injectable()
 
 export class ServicioGaleria{
-  public ruta_foto = "assets/img/galeria/01.jpg";
+  //public ruta_foto = "assets/img/galeria/01.jpg";
+  //public ruta_foto = "assets/img/galeria/01.jpg";
   public url:string;
 
   constructor(private _http:Http){
-    this.url = RutaServidor.url +  "mostrar-galeria";
+    this.url = RutaServidor.url;
   }
 
-  prueba(){
-    return this.ruta_foto;
-  }
+  // prueba(){
+  //   return this.ruta_foto;
+  // }
 
   tomarJsonGaleria(){
-    return this._http.get(this.url).map(resultado => resultado.json());
+    let recurso = this.url +  "mostrar-galeria";
+    return this._http.get(recurso).map(resultado => resultado.json());
   }
 
   subirFotoGaleria(recurso, token, foto){
@@ -63,5 +65,13 @@ export class ServicioGaleria{
         xhr.send(formData);
       });
     }
+  }
+
+  borrarItemFoto(id){
+    let recurso = this.url + 'borrar-foto/' + id;
+    let headers = new Headers({"Content-Type":"application/json"
+                                ,"Authorization": sessionStorage.getItem("id")});
+
+    return this._http.delete(recurso, {headers: headers}).map(resultado=>resultado.json());
   }
 }

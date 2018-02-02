@@ -11,6 +11,7 @@ var app = require("./app");
 var port = process.env.PORT || 1234;
 
 //conexión a base de datos
+//mongodb://<dbuser>:<dbpassword>@ds123728.mlab.com:23728/cursojavascript1
 mongoose.connect("mongodb://localhost:27017/cursoJavascript1", (error, respuesta) => {
   if(error){
     throw error;

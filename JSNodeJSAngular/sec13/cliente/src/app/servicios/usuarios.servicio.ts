@@ -11,7 +11,7 @@ import { RutaServidor } from '../ruta_servidor';
 @Injectable()
 
 export class ServicioUsuarios{
-  public ruta_foto = "assets/img/galeria/01.jpg";
+  //public ruta_foto = "assets/img/galeria/01.jpg";
   public url:string;
 
   constructor(private _http:Http){
@@ -19,9 +19,9 @@ export class ServicioUsuarios{
     this.url = RutaServidor.url + "login";
   }
 
-  prueba(){
-    return this.ruta_foto;
-  }
+  // prueba(){
+  //   return this.ruta_foto;
+  // }
 
   login(lstUsuarios, token){
     lstUsuarios.token = token; //se crea la propiedad aca, en el modelo solo hay dos definidas

@@ -52,9 +52,6 @@ export class MouseComponente{
         //inicializa las propiedades que se cargan con elementos HTML
         let resp = false;
 
-
-
-
         if(document.querySelectorAll('#efectoMouse')[0] !== undefined){
           pm.zona = document.querySelectorAll('#efectoMouse');
 

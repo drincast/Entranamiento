@@ -93,8 +93,6 @@ export class ApiComponente {
       this.subirImagen = null;
       return this.subirImagen;
     }
-
-
   }
 
   nuevoSlide(){

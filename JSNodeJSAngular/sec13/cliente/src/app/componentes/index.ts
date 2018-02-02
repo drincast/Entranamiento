@@ -69,7 +69,7 @@ export class IndexComponente {
       intervalVEHTML: function() {
         //funcion de intervalo para verificar las propiedades que se cargan con elementos HTML
         pb.intervaloVerificar = setInterval(()=> {
-          console.log("en intervalVEHTML", pb.intervaloVerificar);
+          //console.log("en intervalVEHTML", pb.intervaloVerificar);
           if(mb.iniciarPropEHTML()){
             clearInterval(pb.intervaloVerificar);
             mb.inicioMovil();

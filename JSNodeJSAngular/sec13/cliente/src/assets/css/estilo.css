@@ -226,7 +226,8 @@ EFECTO DE SCROLL
 	width:100%;
 	height:100%;
 	z-index:-10;
-	background: url(../img/slide/slide03.jpg);
+	/* background: url(../img/slide/slide03.jpg); */
+	background: url(http://localhost:1234/api//tomar-imagen-slide/wfmIB1gIBi7-qtpSVZaNVYCf.jpg);
 	background-size: cover;
 }
 
@@ -598,7 +599,4 @@ PANTALLA DE PHONES - EXTRA SMALL (xs) - revisamos en movil horizontal 480px o ve
 		font-size: 1em;
 		right:2%;
 	}
-
-
-
 }

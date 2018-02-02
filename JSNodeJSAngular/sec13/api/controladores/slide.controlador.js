@@ -94,7 +94,11 @@ function actualizarSlide(req, res){
       var antiguaImagen = parametros.rutaImagenActual;
       var rutaImagen = "./ficheros/slide/"+antiguaImagen;
 
-      fs.unlink(rutaImagen);
+      fs.unlink(rutaImagen, (error)=>{
+        if(error){
+          console.log("la imagen: " + rutaImagen + " ya no existe");
+        }
+      });
     }
 
     cambioImagen = true;
@@ -137,7 +141,13 @@ function borrarSlide(req, res){
       else{
         var imagen = capturarSlide.imagen;
         var rutaImagen = "./ficheros/slide/"+imagen;
-        fs.unlink(rutaImagen);
+        
+        fs.unlink(rutaImagen, (error)=>{
+          if(error){
+            console.log("la imagen: " + rutaImagen + " ya no existe");
+          }
+        });
+        //fs.unlink(rutaImagen);
       }
     }
   });
@@ -164,7 +174,7 @@ function tomarImagenSlides(req, res){
   var imagen = req.params.imagen;
   var rutaImagen = "./ficheros/slide/"+imagen;
 
-  console.log(imagen, rutaImagen);
+  //console.log(imagen, rutaImagen);
 
   fs.exists(rutaImagen, (exists)=>{
     if(exists){
