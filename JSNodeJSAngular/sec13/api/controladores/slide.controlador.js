@@ -25,10 +25,21 @@ function crearSlide(req, res){
   slide.descripcion = parametros.descripcion;
 
   if(req.files){
+    console.log(req.files);
     var imagenRuta = req.files.imagen.path;
+    console.log(imagenRuta);
     var imgSplit = imagenRuta.split("\\");
-
     slide.imagen = imgSplit[2];
+    imgSplit = undefined;
+    console.log(slide.imagen);
+    //puede pasar por el servidor openode que split no exista y retorne undefined
+    if(imgSplit === undefined){
+      imgSplit = imagenRuta.substr(-28);
+      slide.imagen = imgSplit;
+    }
+
+    // slide.imagen = imgSplit[2];
+    console.log(slide.imagen);
 
     if(slide.titulo != null && slide.descripcion != null){
       slide.save((error, slideGuardado)=>{
@@ -141,7 +152,7 @@ function borrarSlide(req, res){
       else{
         var imagen = capturarSlide.imagen;
         var rutaImagen = "./ficheros/slide/"+imagen;
-        
+
         fs.unlink(rutaImagen, (error)=>{
           if(error){
             console.log("la imagen: " + rutaImagen + " ya no existe");
@@ -177,6 +188,7 @@ function tomarImagenSlides(req, res){
   //console.log(imagen, rutaImagen);
 
   fs.exists(rutaImagen, (exists)=>{
+    console.log(rutaImagen);
     if(exists){
       res.sendFile(path.resolve(rutaImagen));
     }
