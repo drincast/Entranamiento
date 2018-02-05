@@ -16,30 +16,51 @@ function pruebaSlide(req, res){
 
 function crearSlide(req, res){
   //variable del modelo Slide
-  var slide = new Slide();
+  let slide = new Slide();
 
   //obtenemos los parametros de la peticion
-  var parametros = req.body;
+  let parametros = req.body;
 
   slide.titulo = parametros.titulo;
   slide.descripcion = parametros.descripcion;
 
   if(req.files){
-    console.log(req.files);
-    var imagenRuta = req.files.imagen.path;
+    let imagenRuta = req.files.imagen.path;
+    let imgSplit = undefined;
+
     console.log(imagenRuta);
-    var imgSplit = imagenRuta.split("\\");
-    slide.imagen = imgSplit[2];
-    imgSplit = undefined;
-    console.log(slide.imagen);
+
+    // if(imagenRuta.search("\\")){
+    //   imgSplit = imagenRuta.split("\\");
+    //   slide.imagen = imgSplit[2];
+    //   console.log(imagenRuta, imgSplit);
+    // }
+    // else{
+    //   imgSplit = imagenRuta.split("\/");
+    //   console.log(imagenRuta, imgSplit);
+    //   slide.imagen = imgSplit[3];
+    // }
+
+    imgSplit = imagenRuta.split("\/");
+    console.log(imagenRuta, imgSplit);
+    slide.imagen = imgSplit[imgSplit.length - 1];
+
+    console.log(imagenRuta, imgSplit, slide.imagen, "final");
+    //imgSplit = undefined;
     //puede pasar por el servidor openode que split no exista y retorne undefined
     if(imgSplit === undefined){
+      imagenRuta = req.files.imagen.path;
       imgSplit = imagenRuta.substr(-28);
       slide.imagen = imgSplit;
+      console.log(imagenRuta, imgSplit, slide.imagen, "imgSplit es undefined");
+    }
+
+    if(imgSplit === undefined){
+      res.status(500).send({mensaje: "Error al guardar el slide, imgSplit"});
     }
 
     // slide.imagen = imgSplit[2];
-    console.log(slide.imagen);
+    console.log(imagenRuta, imgSplit, slide.imagen, "final");
 
     if(slide.titulo != null && slide.descripcion != null){
       slide.save((error, slideGuardado)=>{

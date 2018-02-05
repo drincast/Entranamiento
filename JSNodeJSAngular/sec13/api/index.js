@@ -16,7 +16,17 @@ mongoose.connect("mongodb://localhost:27017/cursoJavascript1", (error, respuesta
   if(error){
     throw error;
   }else{
-    console.log("se conecto a la base de datos ...");
+    let f = new Date();
+    console.log("se conecto a la base de datos ...", f);
+
+    // let v = './ficheros/slide/ZPedGNekp0SOmw9LE6ukxpnx.jpg'
+    // let a = v.split('\/');
+    //
+    // console.log(a);
+    // console.log(a.length);
+    // a = v.split('\\');
+    // console.log(a);
+    // console.log(v);
 
     //referencia de expressjs para traer dos parametros, el puerto y la accion con el puerto.
     app.listen(port, function(){
