@@ -28,7 +28,7 @@ function crearSlide(req, res){
     let imagenRuta = req.files.imagen.path;
     let imgSplit = undefined;
 
-    console.log(imagenRuta);
+    //console.log(imagenRuta);
 
     // if(imagenRuta.search("\\")){
     //   imgSplit = imagenRuta.split("\\");
@@ -42,7 +42,7 @@ function crearSlide(req, res){
     // }
 
     imgSplit = imagenRuta.split("\/");
-    console.log(imagenRuta, imgSplit);
+    //console.log(imagenRuta, imgSplit);
     slide.imagen = imgSplit[imgSplit.length - 1];
 
     console.log(imagenRuta, imgSplit, slide.imagen, "final");

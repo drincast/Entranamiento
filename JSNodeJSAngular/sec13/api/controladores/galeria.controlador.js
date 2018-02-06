@@ -12,13 +12,14 @@ function pruebaGaleria(req, res){
 }
 
 function crearFoto(req, res){
-  var galeria = new Galeria();
+  let galeria = new Galeria();
 
   if(req.files){
-    var imagenRuta = req.files.foto.path;
-    var imgSplit = imagenRuta.split("\\");
-
-    galeria.foto = imgSplit[2];
+    let imagenRuta = req.files.foto.path;
+    //var imgSplit = imagenRuta.split("\\");
+    //galeria.foto = imgSplit[2];
+    let imgSplit = imagenRuta.split("\/");
+    galeria.foto = imgSplit[imgSplit.length - 1];
 
     if(galeria.foto != null){
       galeria.save((error, fotoGuardada)=>{
